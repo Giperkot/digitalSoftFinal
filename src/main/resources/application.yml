@@ -1,19 +1,7 @@
-kas:
-  name: prod-YAML
-  environment: production
-  enabled: true
-  servers:
-    - www.abc.com
-    - www.xyz.com
-  address: jdbc:clickhouse://localhost:8123
-  username: default
-  password:
-  db: system
-  socketTimeout: 600000
 org:
   neo4j:
     driver:
       uri: bolt://localhost:7687
       authentication:
-        username: digitalgov
-        password: digitalgov
+        username: neo4j
+        password: 111111

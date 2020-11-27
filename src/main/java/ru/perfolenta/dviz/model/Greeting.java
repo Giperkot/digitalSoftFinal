@@ -1,11 +1,13 @@
 package ru.perfolenta.dviz.model;
 
-import org.springframework.hateoas.RepresentationModel;
+//import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Greeting extends RepresentationModel<Greeting> {
+public class Greeting
+        //extends RepresentationModel<Greeting>
+{
 
     private final String content;
 

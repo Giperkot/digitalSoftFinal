@@ -1,6 +1,6 @@
 package ru.perfolenta.dviz.controller;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+//import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import ru.perfolenta.dviz.model.Greeting;
 import org.springframework.http.HttpEntity;
@@ -20,7 +20,7 @@ public class GreetingController {
             @RequestParam(value = "name", defaultValue = "World") String name) {
 
         Greeting greeting = new Greeting(String.format(TEMPLATE, name));
-        greeting.add(linkTo(methodOn(GreetingController.class).greeting(name)).withSelfRel());
+        //greeting.add(linkTo(methodOn(GreetingController.class).greeting(name)).withSelfRel());
 
         return new ResponseEntity<>(greeting, HttpStatus.OK);
     }

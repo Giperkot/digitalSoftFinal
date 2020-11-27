@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ClickhouseTestApplication {
 
     public static void main(String[] args) {
-        SpringApplication app = (SpringApplication) SpringApplication.run(ClickhouseTestApplication.class, args);
-
+       SpringApplication.run(ClickhouseTestApplication.class, args);
     }
 
 }
