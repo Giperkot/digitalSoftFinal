@@ -29,8 +29,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/favicon.ico","/403","/css/**","/js/**", "/webjars/**", "/api/public/login/login").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("*").permitAll();
+                /*.anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -44,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID").invalidateHttpSession(true)
                 .permitAll()
                 .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);*/
     }
 
     @Override

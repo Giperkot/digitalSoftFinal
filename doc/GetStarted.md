@@ -19,6 +19,7 @@
 В вайл <NEO_HOME>/conf/neo4j.conf добавляем строку 
 
     dbms.unmanaged_extension_classes=n10s.endpoint=/rdf
+    dbms.security.auth_enabled=false
 
 Рестарт сервера
 
@@ -27,8 +28,7 @@
     docker cp "F:\development\leadersofdigital\Doc\data\CModel1.owl" mycontainer:/home/CModel11.owl
 
     CALL n10s.graphconfig.init();
-    CREATE CONSTRAINT n10s_unique_uri ON (r:Resource)
-    ASSERT r.uri IS UNIQUE;
+    CREATE CONSTRAINT n10s_unique_uri ON (r:Resource) ASSERT r.uri IS UNIQUE;
     call n10s.graphconfig.init()
     call n10s.graphconfig.init( {  handleMultival: "ARRAY" })
     call n10s.graphconfig.init();
