@@ -17,3 +17,16 @@ footer{
 td .nav-link {
     padding: 0;
 }
+
+
+table.standart th {
+    font-weight: normal;
+    color: #039;
+    padding: 10px 15px;
+}
+table.standart td {
+    color: #669;
+    border-top: 1px solid #e8edff;
+    padding: 10px 15px;
+}
+table.standart tr:nth-child(2n) {background: #e8edff;}

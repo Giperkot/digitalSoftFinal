@@ -3,265 +3,35 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Платформа отчетов</title>
-
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
     <div th:replace="fragments/header :: header-css"/>
 
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
-<div class="container">
-    <div class="container theme-showcase">
-        <h1>Календарь отчетов</h1>
-        <div id="holder" class="row">
-            <table class="calendar-table table table-condensed table-tight">
-                <thead>
-                <tr>
-                    <td colspan="7" style="text-align: center">
-                        <table style="white-space: nowrap; width: 100%">
-                            <tbody>
-                            <tr>
-                                <td style="text-align: left;"><span class="btn-group">                   <button
-                                        class="js-cal-prev btn btn-default">&lt;</button>                   <button
-                                        class="js-cal-next btn btn-default">&gt;</button>                 </span>
-                                    <button class="js-cal-option btn btn-default active"
-                                            data-date="2020-09-13T12:55:33.700Z" data-mode="month">Hoy
-                                    </button>
-                                </td>
-                                <td><span class="btn-group btn-group-lg">                                        <button
-                                        class="js-cal-option btn btn-link" data-mode="year">Septiembre</button>                                          <button
-                                        class="js-cal-years btn btn-link">2020</button>                                     </span>
-                                </td>
-                                <td style="text-align: right"><span class="btn-group">                   <button
-                                        class="js-cal-option btn btn-default " data-mode="year">Año</button>                   <button
-                                        class="js-cal-option btn btn-default active" data-mode="month">Mes</button>                   <button
-                                        class="js-cal-option btn btn-default " data-mode="week">Semana</button>                   <button
-                                        class="js-cal-option btn btn-default " data-mode="day">Dia</button>                 </span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </thead>
-                <thead>
-                <tr class="c-weeks">
-                    <th class="c-name"> Domingo</th>
-                    <th class="c-name"> Lunes</th>
-                    <th class="c-name"> Martes</th>
-                    <th class="c-name"> Miercoles</th>
-                    <th class="c-name"> Jueves</th>
-                    <th class="c-name"> Viernes</th>
-                    <th class="c-name"> Sabado</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="calendar-day outside _2020_8_30  c-sunday js-cal-option"
-                        data-date="2020-08-29T21:00:00.000Z">
-                        <div class="date">30</div>
-                        <div class="event begin end" title="Birthday Party" data-index="259">Birthday Party</div>
-                        <div class="event begin end" title="Meeting" data-index="260"><strong>4 pm</strong> Meeting
-                        </div>
-                    </td>
-                    <td class="calendar-day outside _2020_8_31   js-cal-option" data-date="2020-08-30T21:00:00.000Z">
-                        <div class="date">31</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_1   js-cal-option" data-date="2020-08-31T21:00:00.000Z">
-                        <div class="date">1</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_2   js-cal-option" data-date="2020-09-01T21:00:00.000Z">
-                        <div class="date">2</div>
-                        <div class="event all-day begin end" title="Mr. Behnke" data-index="261">Mr. Behnke</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_3   js-cal-option" data-date="2020-09-02T21:00:00.000Z">
-                        <div class="date">3</div>
-                        <div class="event begin" title="Long Event" data-index="262">Long Event</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_4   js-cal-option" data-date="2020-09-03T21:00:00.000Z">
-                        <div class="date">4</div>
-                        <div class="event" title="Long Event" data-index="262">&nbsp;</div>
-                        <div class="event begin" title="All Day Event" data-index="263">All Day Event</div>
-                        <div class="event begin end" title="Mr. Behnke" data-index="264"><strong>1:15 pm</strong> Mr.
-                            Behnke
-                        </div>
-                    </td>
-                    <td class="calendar-day current _2020_9_5  c-saturday js-cal-option"
-                        data-date="2020-09-04T21:00:00.000Z">
-                        <div class="date">5</div>
-                        <div class="event" title="Long Event" data-index="262">&nbsp;</div>
-                        <div class="event" title="All Day Event" data-index="263">&nbsp;</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="calendar-day current _2020_9_6  c-sunday js-cal-option"
-                        data-date="2020-09-05T21:00:00.000Z">
-                        <div class="date">6</div>
-                        <div class="event end" title="Long Event" data-index="262">&nbsp;</div>
-                        <div class="event" title="All Day Event" data-index="263">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_7   js-cal-option" data-date="2020-09-06T21:00:00.000Z">
-                        <div class="date">7</div>
-                        <div class="clear event">&nbsp;</div>
-                        <div class="event" title="All Day Event" data-index="263">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_8   js-cal-option" data-date="2020-09-07T21:00:00.000Z">
-                        <div class="date">8</div>
-                        <div class="clear event">&nbsp;</div>
-                        <div class="event end" title="All Day Event" data-index="263">&nbsp;</div>
-                        <div class="event begin end" title="All Day Event" data-index="265"><strong>8:15 am</strong> All
-                            Day Event
-                        </div>
-                    </td>
-                    <td class="calendar-day current _2020_9_9   js-cal-option" data-date="2020-09-08T21:00:00.000Z">
-                        <div class="date">9</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_10   js-cal-option" data-date="2020-09-09T21:00:00.000Z">
-                        <div class="date">10</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_11   js-cal-option" data-date="2020-09-10T21:00:00.000Z">
-                        <div class="date">11</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_12  c-saturday js-cal-option"
-                        data-date="2020-09-11T21:00:00.000Z">
-                        <div class="date">12</div>
-                        <div class="event begin" title="Meeting" data-index="266">Meeting</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="calendar-day current _2020_9_13 selected c-sunday js-cal-option today"
-                        data-date="2020-09-12T21:00:00.000Z">
-                        <div class="date">13</div>
-                        <div class="event end" title="Meeting" data-index="266">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_14   js-cal-option" data-date="2020-09-13T21:00:00.000Z">
-                        <div class="date">14</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_15   js-cal-option" data-date="2020-09-14T21:00:00.000Z">
-                        <div class="date">15</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_16   js-cal-option" data-date="2020-09-15T21:00:00.000Z">
-                        <div class="date">16</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_17   js-cal-option" data-date="2020-09-16T21:00:00.000Z">
-                        <div class="date">17</div>
-                        <div class="event begin end" title="Ms. Tubbs" data-index="267"><strong>8 am</strong> Ms. Tubbs
-                        </div>
-                    </td>
-                    <td class="calendar-day current _2020_9_18   js-cal-option" data-date="2020-09-17T21:00:00.000Z">
-                        <div class="date">18</div>
-                        <div class="event all-day begin end" title="Date" data-index="268"><strong>8 am</strong> Date
-                        </div>
-                        <div class="event begin end" title="Long Event" data-index="269"><strong>9:15 am</strong> Long
-                            Event
-                        </div>
-                    </td>
-                    <td class="calendar-day current _2020_9_19  c-saturday js-cal-option"
-                        data-date="2020-09-18T21:00:00.000Z">
-                        <div class="date">19</div>
-                        <div class="event begin end" title="All Day Event" data-index="270">All Day Event</div>
-                        <div class="event begin end" title="Meeting" data-index="271">Meeting</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="calendar-day current _2020_9_20  c-sunday js-cal-option"
-                        data-date="2020-09-19T21:00:00.000Z">
-                        <div class="date">20</div>
-                        <div class="event all-day begin end" title="Repeating Event" data-index="272">Repeating Event
-                        </div>
-                    </td>
-                    <td class="calendar-day current _2020_9_21   js-cal-option" data-date="2020-09-20T21:00:00.000Z">
-                        <div class="date">21</div>
-                        <div class="event begin" title="Date" data-index="273">Date</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_22   js-cal-option" data-date="2020-09-21T21:00:00.000Z">
-                        <div class="date">22</div>
-                        <div class="event" title="Date" data-index="273">&nbsp;</div>
-                        <div class="event begin end" title="Date" data-index="274">Date</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_23   js-cal-option" data-date="2020-09-22T21:00:00.000Z">
-                        <div class="date">23</div>
-                        <div class="event" title="Date" data-index="273">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_24   js-cal-option" data-date="2020-09-23T21:00:00.000Z">
-                        <div class="date">24</div>
-                        <div class="event end" title="Date" data-index="273">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_25   js-cal-option" data-date="2020-09-24T21:00:00.000Z">
-                        <div class="date">25</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_26  c-saturday js-cal-option"
-                        data-date="2020-09-25T21:00:00.000Z">
-                        <div class="date">26</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="calendar-day current _2020_9_27  c-sunday js-cal-option"
-                        data-date="2020-09-26T21:00:00.000Z">
-                        <div class="date">27</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_28   js-cal-option" data-date="2020-09-27T21:00:00.000Z">
-                        <div class="date">28</div>
-                        <div class="event begin" title="Date" data-index="275">Date</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_29   js-cal-option" data-date="2020-09-28T21:00:00.000Z">
-                        <div class="date">29</div>
-                        <div class="event end" title="Date" data-index="275">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day current _2020_9_30   js-cal-option" data-date="2020-09-29T21:00:00.000Z">
-                        <div class="date">30</div>
-                        <div class="event begin" title="Birthday Party" data-index="276">Birthday Party</div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_1   js-cal-option" data-date="2020-09-30T21:00:00.000Z">
-                        <div class="date">1</div>
-                        <div class="event end" title="Birthday Party" data-index="276">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_2   js-cal-option" data-date="2020-10-01T21:00:00.000Z">
-                        <div class="date">2</div>
-                        <div class="event begin end" title="All Day Event" data-index="277">All Day Event</div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_3  c-saturday js-cal-option"
-                        data-date="2020-10-02T21:00:00.000Z">
-                        <div class="date">3</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="calendar-day outside _2020_10_4  c-sunday js-cal-option"
-                        data-date="2020-10-03T21:00:00.000Z">
-                        <div class="date">4</div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_5   js-cal-option" data-date="2020-10-04T21:00:00.000Z">
-                        <div class="date">5</div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_6   js-cal-option" data-date="2020-10-05T21:00:00.000Z">
-                        <div class="date">6</div>
-                        <div class="event begin" title="Date" data-index="278"><strong>8:15 am</strong> Date</div>
-                        <div class="event begin end" title="Repeating Event" data-index="279"><strong>4 pm</strong>
-                            Repeating Event
-                        </div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_7   js-cal-option" data-date="2020-10-06T21:00:00.000Z">
-                        <div class="date">7</div>
-                        <div class="event" title="Date" data-index="278">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_8   js-cal-option" data-date="2020-10-07T21:00:00.000Z">
-                        <div class="date">8</div>
-                        <div class="event end" title="Date" data-index="278">&nbsp;</div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_9   js-cal-option" data-date="2020-10-08T21:00:00.000Z">
-                        <div class="date">9</div>
-                    </td>
-                    <td class="calendar-day outside _2020_10_10  c-saturday js-cal-option"
-                        data-date="2020-10-09T21:00:00.000Z">
-                        <div class="date">10</div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+
+
+    <table class="standart">
+        <tbody>
+        <tr>
+            <th>id</th>
+            <th>Название</th>
+            <th>Адрес</th>
+        </tr>
+        <tr th:each="modelRecord : ${modelRecordList}">
+            <td th:utext="${modelRecord.name}">...</td>
+            <td th:utext="${modelRecord.label}">...</td>
+            <td th:utext="${modelRecord.uri}">...</td>
+        </tr>
+        </tbody>
+    </table>
 
 <!-- /.container -->
+<!--<option th:each="typeDog : ${typeDogs}"
+        th:value="${typeDog.id}"
+        th:text="${typeDog.nameType}">
+</option>-->
+
 
 <div th:replace="fragments/footer :: footer"></div>
 
