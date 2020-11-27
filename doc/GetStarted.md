@@ -1,6 +1,8 @@
 #Скачать и установить Docker
 
 ##Устанавливаем neo4j
+В cmd выполнить
+
     docker pull neo4j
 
 
