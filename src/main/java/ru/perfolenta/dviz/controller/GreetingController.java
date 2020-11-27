@@ -2,28 +2,34 @@ package ru.perfolenta.dviz.controller;
 
 //import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import ru.perfolenta.dviz.model.Greeting;
+import ru.perfolenta.dviz.dto.OuDto;
+import ru.perfolenta.dviz.service.DataService;
+
+import java.util.List;
 
 @Controller
 public class GreetingController {
 
     private static final String TEMPLATE = "Hello, %s!";
 
-    @RequestMapping("/greeting")
-    public HttpEntity<Greeting> greeting(
-            @RequestParam(value = "name", defaultValue = "World") String name) {
+    private DataService dataService;
 
-        Greeting greeting = new Greeting(String.format(TEMPLATE, name));
-        //greeting.add(linkTo(methodOn(GreetingController.class).greeting(name)).withSelfRel());
+    @Autowired
+    public GreetingController(DataService dataService) {
+        this.dataService = dataService;
+    }
 
-        return new ResponseEntity<>(greeting, HttpStatus.OK);
+    @GetMapping({"/", "/index"})
+    public String index(Model model) {
+
+        List<OuDto> ouList = dataService.getOus();
+        model.addAttribute("modelRecordList", ouList);
+
+        return "/index";
     }
 
     @GetMapping("/login")
