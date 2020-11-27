@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"></div>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <span>Список справочников</span>
+
+    <ol>
+        <li><a class="nav-link" th:href="@{/catalog/CurrencyRates}">Справочник курсов валют</a></li>
+        <li><a class="nav-link" th:href="@{/catalog/Bics}">Справочник кредитных организаций</a></li>
+        <li><a class="nav-link" th:href="@{/catalog/Organizations}">Справочник организаций</a></li>
+        <li><a class="nav-link" th:href="@{/catalog/FinTrans}">Справочник финансовых сделок</a></li>
+    </ol>
+</div>
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script type="text/javascript" th:src="@{/js/table1-page.js}"></script>
+
+<script type="text/javascript">
+    $(document).ready(table1PageScript)();
+</script>
+
+</body>
+</html>
