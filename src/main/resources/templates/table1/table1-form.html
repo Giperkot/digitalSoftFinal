@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+    <div th:replace="fragments/header :: header"/>
+        <div class="container">
+            <h1>Форма расширения</h1>
+
+            <form method="post" th:object="${extension}">
+                <label for="urn">URN</label>
+                <span>urn:bp:</span><input id="urn" th:field="*{urn}" class="form-control input-lg"/>
+
+                <label for="name">Название</label>
+                <input id="name" th:field="*{name}" class="form-control input-lg"/>
+
+                <button type="submit" name="add">Сохранить</button>
+
+            </form>
+        </div>
+        <!-- /.container -->
+
+    <div th:replace="fragments/footer :: footer"/>
+
+</body>
+
+</html>

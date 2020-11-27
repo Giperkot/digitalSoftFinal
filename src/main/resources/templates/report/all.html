@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+    <h2 class="black">Список отчетов</h2>
+
+    <br>
+    <!--
+        <ol>
+            <li>
+
+                <a class="nav-link" th:href="@{/report/balance/form}">Форма отчета</a>
+                <a class="nav-link" th:href="@{/report/balance/1}">Карточка отчета</a>
+            </li>
+        </ol>-->
+    <br>
+    <br>
+    <div class="row">
+        <div class="bs-example">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>№</th>
+                    <th>Пользователь</th>
+                    <th>Должность</th>
+                    <th>Компания</th>
+                    <th>Дата отчета</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="report : ${reportsList}">
+                    <td>
+                        <a class="nav-link" th:href="@{'/report/balance/'+${report.id}}">
+                            Открыть
+                        </a>
+                    </td>
+                    <td th:utext="${report.user?.firstName}">...</td>
+                    <td th:utext="${report.user?.position}">...</td>
+                    <td th:utext="${report.user?.organization?.shortName}">...</td>
+                    <td th:utext="${report.dateReport}">...</td>
+                    <td>Черновик</td>
+                </th:block>
+                <!--<th:block th:each="report: ${reportsList}>
+                    <td><button type="button" class="btn btn-link">1</button></td>
+                    <td>Крокодил Гена</td>
+&lt;!&ndash;                    <td></td>&ndash;&gt;
+                    <td th:text="${report.comment}" />
+                    <td>ООО "Чебурашка"</td>
+                    <td>12/09/2020</td>
+                    <td>Черновик</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary">Редактировать</button>
+                        <button type="button" class="btn btn-primary">Отправить</button>
+                    </td>
+
+                </tr>-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+<script type="text/javascript" th:src="@{/js/table1-page.js}"></script>
+
+<script type="text/javascript">
+    $(document).ready(table1PageScript)();
+</script>
+
+</body>
+</html>

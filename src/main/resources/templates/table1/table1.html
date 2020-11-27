@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+    <div th:if="${extension != null}">
+        <a th:href="@{/extension/form/{id}(id=${extension.id})}">Изменить</a>
+
+        <h3>
+            UUID:
+            <small class="text-muted" th:text="${extension.uuid}">-</small>
+        </h3>
+        <h3>
+            URN:
+            <small class="text-muted" th:text="${extension.urn}">-</small>
+        </h3>
+        <h3>
+            Название:
+            <small class="text-muted" th:text="${extension.name}">-</small>
+        </h3>
+    </div>
+
+    <form th:action="@{{id}/ext/upload(id=${extension.id})}" method="post"  enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="custom-file">
+                <input type="file" id="customFile" name="file" class="custom-file-input form-control-sm">
+                <label class="custom-file-label col-form-label-sm" for="customFile">Выбирете kar-файл</label>
+            </div>
+        </div>
+
+        <button type="submit" name="uploadExt">Загрузить</button>
+    </form>
+
+        <div th:if="uploadResult != null" >
+            <span>результат: </span><span th:text="uploadResult">-</span>
+        </div>
+        <div th:if="uploadUuid != null" >
+            <span>Загружен: </span><span th:text="uploadUuid">-</span>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+<script type="text/javascript" th:src="@{/js/table1-page.js}"></script>
+<script type="text/javascript" src="chrome-extension://epebfcehmdedogndhlcacafjaacknbcm/nmcades_plugin_api.js"></script>
+<script type="text/javascript" src="chrome-extension://iifchhfnnmpdbibifmljnfjhpififfog/nmcades_plugin_api.js"></script>
+
+<script type="text/javascript" layout:fragment="js">
+    include_async_code()
+
+    async_resolve();
+
+    $(document).ready(table1PageScript)();
+</script>
+
+</body>
+</html>
