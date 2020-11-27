@@ -1,0 +1,7 @@
+match (a:Attributes)
+match (s:InfSystem)
+match (p:Persons)
+match (d:Documents)
+match (o:Orgs)
+match (g:GovDepartment)
+return a,s,p,d,o,g

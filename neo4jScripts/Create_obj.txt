@@ -1,0 +1,146 @@
+//Создадим аттрибуты физлица
+create (a:Attributes {id:"FirstName", name:"Имя", type:"string", access_level:"all"})
+create (a1:Attributes {id:"SecondName", name:"Фамилия", type:"string", access_level:"all"})
+create (a2:Attributes {id:"MiddleName", name:"Отчество (если есть)", type:"string", access_level:"all"})
+create (a3:Attributes {id:"SNILS", name:"СНИЛС", type:"string", access_level:"level5"})
+create (a4:Attributes {id:"INN", name:"ИНН", type:"integer", access_level:"level5"})
+create (a5:Attributes {id:"BirthDate", name:"Дата рождения", type:"timestamp", access_level:"level5"})
+create (a6:Attributes {id:"RefAddressReg", name:"Адрес регистрации (ссылка на ФИАС)", type:"reference", access_level:"level5"});
+//Создадим аттрибуты ФИАС
+create (a:Attributes {id:"Contry", name:"Страна", type:"string"})
+create (a1:Attributes {id:"Area", name:"Округ", type:"string"})
+create (a2:Attributes {id:"Subject", name:"Субъект", type:"string"})
+create (a3:Attributes {id:"City", name:"Населённый пункт", type:"string"})
+create (a4:Attributes {id:"Street", name:"Улица", type:"string"})
+create (a5:Attributes {id:"House", name:"Дом", type:"string"});
+//Создадим инф.систему, то есть общий справочник (сюда можно отнести различные классификаторы)
+create (s:InfSystem {id:"FIAS", name:"ФИАС Федеральная информационно-адресная система", access_level:"all"});
+//Свяжем адрес и ФИАС
+match (a6:Attributes) where a6.id ="RefAddressReg"
+match (s:InfSystem) where s.id="FIAS"
+create (a6)-[:reference {id:"RefAddrReg"}]->(s);
+//Создадим связки атрибутов ФИАС и самой ФИАС
+match (a:Attributes) where a.id="Contry"
+match (a1:Attributes) where a1.id="Area"
+match (a2:Attributes) where a2.id="Subject"
+match (a3:Attributes) where a3.id="City"
+match (a4:Attributes) where a4.id="Street"
+match (a5:Attributes) where a5.id="House"
+match (s:InfSystem) where s.id="FIAS"
+create (a)-[:include {id:"CountryRef"}]->(s)
+create (a1)-[:include {id:"AreaRef"}]->(a)
+create (a2)-[:include {id:"SubjectRef"}]->(a1)
+create (a2)-[:include {id:"SubjectRef2"}]->(a)
+create (a3)-[:include {id:"CityRef"}]->(a2)
+create (a4)-[:include {id:"StreetRef"}]->(a3)
+create (a5)-[:include {id:"HouseRef"}]->(a4);
+//Создадим физлиц
+create (p:Persons {id:"RFPerson", name:"Физлицо, гражданин РФ"})
+create (p1:Persons {id:"ForeignPerson", name:"Физлицо, гражданин иностранного государства, лицо без гражданства"});
+//Создадим юрлиц
+create (o:Orgs {id:"IP", name:"Индивидуальный предприниматель"})
+create (o1:Orgs {id:"Firm", name:"Коммерческая организация"})
+create (o2:Orgs {id:"NC", name:"Некоммерческая организация"})
+create (o3:Orgs {id:"Gov", name:"Государственная организация"});
+//Создадим связки аттрибутов и физлиц
+match (a:Attributes) where a.id="FirstName"
+match (a1:Attributes) where a1.id="SecondName"
+match (a2:Attributes) where a2.id="MiddleName"
+match (a3:Attributes) where a3.id="SNILS"
+match (a4:Attributes) where a4.id="INN"
+match (a5:Attributes) where a5.id="BirthDate"
+match (p:Persons) where p.id="RFPerson"
+match (p1:Persons) where p1.id="ForeignPerson"
+create (a)-[:belongs]->(p)
+create (a)-[:belongs]->(p1)
+create (a1)-[:belongs]->(p)
+create (a1)-[:belongs]->(p1)
+create (a2)-[:belongs]->(p)
+create (a2)-[:belongs]->(p1)
+create (a5)-[:belongs]->(p)
+create (a5)-[:belongs]->(p1)
+create (a3)-[:belongs]->(p)
+create (a4)-[:belongs]->(p);
+//Создадим документы
+create (d:Documents {id:"PersonDoc", name:"Документы физ.лица", access_level:"level5"})
+create (d1:Documents {id:"OrgDoc", name:"Документы юр.лица", access_level:"level5"})
+create (a:Attributes {id:"TypeDoc", name:"Тип документа"});
+//Создадим связки атрибутов и документов
+match (d:Documents) where d.id="PersonDoc"
+match (d1:Documents) where d1.id="OrgDoc"
+match (a:Attributes) where a.id="FirstName"
+match (a1:Attributes) where a1.id="SecondName"
+match (a2:Attributes) where a2.id="MiddleName"
+match (a3:Attributes) where a3.id="SNILS"
+match (a4:Attributes) where a4.id="INN"
+match (a5:Attributes) where a5.id="BirthDate"
+match (a6:Attributes) where a6.id="TypeDoc"
+match (p:Persons) where p.id="RFPerson"
+match (p1:Persons) where p1.id="ForeignPerson"
+create (a)-[:have]->(d)
+create (a1)-[:have]->(d)
+create (a2)-[:have]->(d)
+create (a3)-[:have]->(d)
+create (a4)-[:have]->(d)
+create (a4)-[:have]->(d1)
+create (a5)-[:have]->(d)
+create (a6)-[:have]->(d)
+create (a6)-[:have]->(d1)
+create (d)-[:have]->(p)
+create (d)-[:have]->(p1);
+//Создадим связки для организаций
+match (o:Orgs) where o.id="IP"
+match (o1:Orgs) where o1.id="Firm"
+match (o2:Orgs) where o2.id="NC"
+match (o3:Orgs) where o3.id="Gov"
+match (d:Documents) where d.id="OrgDoc"
+match (a:Attributes) where a.id ="INN"
+create (o)-[:have]->(a)
+create (o1)-[:have]->(a)
+create (o2)-[:have]->(a)
+create (o3)-[:have]->(a)
+create (d)-[:have]->(o)
+create (d)-[:have]->(o1)
+create (d)-[:have]->(o2)
+create (d)-[:have]->(o3);
+//Создадим ведомство ПФР
+create (p:GovDepartment {id:"PFR", name:"ПФР - Пенсионный фонд России"});
+//Свяжем ПФР с атрибутами и гражданами РФ
+match (g:GovDepartment) where g.id="PFR"
+match (a:Attributes) where a.id="FirstName"
+match (a1:Attributes) where a1.id="SecondName"
+match (a2:Attributes) where a2.id="MiddleName"
+match (a3:Attributes) where a3.id="SNILS"
+match (a4:Attributes) where a4.id="INN"
+match (a5:Attributes) where a5.id="BirthDate"
+match (p:Persons) where p.id="RFPerson"
+create (p)-[:list]->(g)
+create (a)-[:canRead]->(g)
+create (a1)-[:canRead]->(g)
+create (a2)-[:canRead]->(g)
+create (a3)-[:canRead]->(g)
+create (a4)-[:canRead]->(g)
+create (a5)-[:canRead]->(g)
+create (g)-[:canWrite]->(a3);
+//Свяжем адрес регистрации с физ.лицами и орагнизациями
+match (a:Attributes) where a.id="RefAddressReg"
+match (p:Persons) where p.id ="RFPerson"
+match (p1:Persons) where p1.id ="ForeignPerson"
+match (d:Documents) where d.id ="PersonDoc"
+match (d1:Documents) where d1.id ="OrgDoc"
+match (o:Orgs) where o.id="IP"
+match (o1:Orgs) where o1.id="Firm"
+match (o2:Orgs) where o2.id="NC"
+match (o3:Orgs) where o3.id="Gov"
+create (a)-[:have]->(d)
+create (a)-[:have]->(d1)
+create (a)-[:belongs]->(p)
+create (a)-[:belongs]->(p1)
+create (a)-[:belongs]->(o)
+create (a)-[:belongs]->(o1)
+create (a)-[:belongs]->(o2)
+create (a)-[:belongs]->(o3);
+//Добавим свойства для ПФР
+match (g:GovDepartment) where g.id="PFR"
+set g.uri = "http://www.pfrf.ru/",
+    g.dwhuri = "http://www.pfrf.ru/";
