@@ -1,13 +1,13 @@
 package ru.perfolenta.dviz.controller;
 
 
-import ru.perfolenta.dviz.dto.OuDto;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Session;
 import org.neo4j.driver.types.Node;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.perfolenta.dviz.dto.OuDto;
 
 import java.util.List;
 
@@ -23,10 +23,10 @@ public class OuController {
     public List<OuDto> getOus() {
 
         try (Session session = driver.session()) {
-            return session.run("MATCH (m:Ou) RETURN m ORDER BY m.name ASC")
+            return session.run("MATCH (n) RETURN n limit 25")
                     .list(r -> {
-                        Node m = r.get("m").asNode();
-                        return  new OuDto(m.get("name").asString(), m.get("mnemonic").asString(), m.get("description").asString(), m.get("imgUrl").asString());
+                        Node m = r.get("n").asNode();
+                        return  new OuDto(m.get("name").asString(), m.get("label").asString(), m.get("uri").asString());
                     });
         }
     }
