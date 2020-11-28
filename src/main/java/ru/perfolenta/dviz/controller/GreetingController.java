@@ -2,6 +2,7 @@ package ru.perfolenta.dviz.controller;
 
 //import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import org.neo4j.driver.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,19 @@ public class GreetingController {
     @GetMapping("/login")
     public String login() {
         return "/login";
+    }
+
+    @GetMapping("/data-model")
+    public String dataModel(Model model) {
+//        List<Record> lst = dataService.getDataModelFias();
+//        model.addAttribute("FIAS", lst);
+        return "/data-model";
+    }
+
+    @GetMapping("/search-clear")
+    public String searchClear(Model model) {
+
+        return "/search-clear";
     }
 
     @GetMapping("/dataShowcase")
