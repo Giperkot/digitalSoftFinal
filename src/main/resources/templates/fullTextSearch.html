@@ -1,0 +1,61 @@
+
+
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>АСПД - Информационная система</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+    <div class="page_wrapper">
+
+        <div class="section_header">
+            <h2>Полнотекстовый поиск</h2>
+        </div>
+
+
+        <div class="search">
+            <form autocomplete="off">
+                <fieldset class="url">
+                    <input id="url" type="text" name="url" class="search_field" required>
+                    <label for="url"><i class="serch_backgr" aria-hidden="true"></i> Поиск</label>
+                    <div class="after"></div>
+                </fieldset>
+                <fieldset class="enter">
+                    <button class="search_btn"></button>
+                </fieldset>
+            </form>
+            <div class="prompt">
+                тестовый режим, введите например <span>орг</span>
+            </div>
+        </div>
+
+        <div class="search_result">
+
+        </div>
+    </div>
+
+
+
+
+
+
+<!--<div th:replace="fragments/footer :: footer"></div>-->
+
+<script id="CSearchResultTemplate" type="text/template">
+
+</script>
+
+<script type="text/javascript" src="/js/pages/fullTextSearch.js"></script>
+<script type="text/javascript" src="/js/lodash.min.js"></script>
+<script type="text/javascript" src="/js/helper.js"></script>
+<script type="text/javascript" src="/js/componentsCore.js"></script>
+</body>
+</html>
+

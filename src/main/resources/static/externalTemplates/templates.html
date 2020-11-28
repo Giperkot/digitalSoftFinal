@@ -1,0 +1,36 @@
+<table class="standart flex_table">
+    <tbody>
+    <tr>
+        <th>Название</th>
+        <th style="max-width: 300px">Государственная система</th>
+        <th style="max-width: 300px">Информационная система</th>
+        <th style="max-width: 300px">Атрибуты</th>
+    </tr>
+    <%for (let i = 0; i < data.resultList.length; i++) {
+    let record = data.resultList[i];
+    let infSystems = record.infSystems;
+
+    for (let k = 0; k < infSystems.length; k++) {
+        let infSystem = infSystems[k];
+    %>
+        <tr>
+            <td><%=record.name%></td>
+            <td style="max-width: 200px"><%=infSystem.GovSystem%></td>
+            <td style="max-width: 300px"><%=infSystem.name%></td>
+            <td>
+                <%
+                if (infSystem.attributes && infSystem.attributes.length > 0) {
+                for (let j = 0; j < infSystem.attributes.length; j++) {
+                    let attribute = infSystem.attributes[j];
+                    let keys = Object.keys(attribute);
+                %>
+                    <%=attribute[keys[0]]%> <%=(j < infSystem.attributes.length - 1) ? "<br/>" : ""%>
+                <%}
+                }%>
+            </td>
+
+        </tr>
+    <%}
+    }%>
+    </tbody>
+</table>

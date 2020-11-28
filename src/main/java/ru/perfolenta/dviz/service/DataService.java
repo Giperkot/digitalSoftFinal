@@ -1,12 +1,13 @@
 package ru.perfolenta.dviz.service;
 
-import org.neo4j.driver.*;
-import org.neo4j.driver.internal.value.StringValue;
+import org.neo4j.driver.Driver;
+import org.neo4j.driver.Query;
+import org.neo4j.driver.Result;
+import org.neo4j.driver.Session;
 import org.neo4j.driver.types.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.perfolenta.dviz.dto.DataShowcaseDto;
-import ru.perfolenta.dviz.dto.OuDto;
+import ru.perfolenta.dviz.dto.*;
 import ru.perfolenta.dviz.dto.showcase.*;
 
 import java.util.ArrayList;
@@ -166,6 +167,58 @@ public class DataService {
                         return  new OuDto(m.get("name").asString(), clearLabel, m.get("uri").asString());
                     });
         }
+    }
+
+    public List<RelationNodeDto> relationGraphModel() {
+        try (Session session = driver.session()) {
+            return session.run("match (n)-[r*1..3]->(m:GovDepartment {id: \"PFR\"}) return n,m")
+                    .list(r -> {
+                        Node m = r.get("n").asNode();
+
+                        return  new RelationNodeDto(m.get("dwhuri").asString(),
+                                m.get("name").asString(),
+                                m.get("comment").asString(),
+                                m.get("id").asString(),
+                                m.get("uri").asString(),
+                                m.get("hashtag").asString());
+                    });
+        }
+    }
+
+
+    public List<SearchResultDto> fullTextSearch (SimpleMessageDto dto) {
+
+        String message = dto.getMessage();
+
+        String searchMessage = message.replaceAll(" ", "*");
+
+        String query = "CALL db.index.fulltext.queryNodes(\"AttrIndex\", \"name:*${query}*\") YIELD node RETURN node\n" +
+                "union all\n" +
+                "CALL db.index.fulltext.queryNodes(\"ISIndex\", \"name:*${query}*\") YIELD node RETURN node\n" +
+                "union all\n" +
+                "CALL db.index.fulltext.queryNodes(\"PersIndex\", \"name:*${query}*\") YIELD node RETURN node\n" +
+                "union all\n" +
+                "CALL db.index.fulltext.queryNodes(\"OrgIndex\", \"name:*${query}*\") YIELD node RETURN node\n" +
+                "union all\n" +
+                "CALL db.index.fulltext.queryNodes(\"Docs\", \"name:*${query}*\") YIELD node RETURN node\n" +
+                "union all\n" +
+                "CALL db.index.fulltext.queryNodes(\"GDIndex\", \"name:*${query}*\") YIELD node RETURN node;";
+
+
+        String finalQuery = query.replaceAll("\\$\\{query\\}", searchMessage);
+
+        try (Session session = driver.session()) {
+            return session.run(finalQuery)
+                    .list(r -> {
+                        Node m = r.get("node").asNode();
+
+                        return  new SearchResultDto(m.get("name").asString(),
+                                m.get("comment").asString(),
+                                m.get("id").asString(),
+                                m.get("hashtag").asString());
+                    });
+        }
+
     }
 
     public String searchNode(String searchEntity){
