@@ -1,0 +1,12 @@
+//Получение списка атрибутов
+match (n:Attributes) return n;
+//Получение списка физлиц
+match (n:Persons) return n;
+//Получение списка организаций
+match (n:Orgs) return n;
+//Получение списка документов
+match (n:Documents) return n;
+//Получение списка ведомств
+match (n:GovDepartment) return n;
+//Получение списка Инф. систем
+match (n:InfSystem) return n;

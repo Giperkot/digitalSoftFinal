@@ -1,0 +1,21 @@
+//Создадим связки
+match (c:Class {label :"Город"})
+match (c1:Class {label :"Документ"})
+match (a:Attributes {id :"City"})
+match (d:Documents {id :"PersonDoc"})
+match (d1:Documents {id :"OrgDoc"})
+create (a)-[:reference {type:"model_dwh"}]->(c)
+create (c)-[:reference {type:"model_dwh"}]->(a)
+create (d)-[:reference {type:"model_dwh"}]->(c1)
+create (c1)-[:reference {type:"model_dwh"}]->(d)
+create (d1)-[:reference {type:"model_dwh"}]->(c1)
+create (c1)-[:reference {type:"model_dwh"}]->(d1);
+match (c:Resource {label :"РуководительНациональногоПроекта"})
+match (c1:Resource {label :"КураторНациональногоПроекта"})
+match (a:Persons {id :"RFPerson"})
+create (a)-[:reference {type:"model_dwh"}]->(c)
+create (c)-[:reference {type:"model_dwh"}]->(a)
+create (a)-[:reference {type:"model_dwh"}]->(c1)
+create (c1)-[:reference {type:"model_dwh"}]->(a);
+//Пример запроса, основываемся на связке по типу
+match (n)-[:reference {type:"model_dwh"}]->(m) return n,m;

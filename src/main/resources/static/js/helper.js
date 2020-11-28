@@ -14,7 +14,12 @@
 
             xhr.onload = function() {
                 if (this.status == 200) {
-                    resolve(this.response);
+                    resolve({
+                        response: this.response,
+                        xhr: this
+                    });
+                } else if (this.status == 302) {
+                    console.log("Redirected 302");
                 } else {
                     let error = new Error(this.statusText);
                     error.code = this.status;
