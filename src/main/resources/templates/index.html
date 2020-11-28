@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Платформа отчетов</title>
+    <title>АСПД - Информационная система</title>
     <link rel="stylesheet" th:href="@{/css/main.css}" />
     <div th:replace="fragments/header :: header-css"/>
 
@@ -12,17 +12,17 @@
 
 
     <div class="page_wrapper">
-        <table class="standart">
+        <table class="standart flex_table">
             <tbody>
             <tr>
-                <th>id</th>
+                <th style="max-width: 300px">id</th>
                 <th>Название</th>
-                <th>Адрес</th>
+                <th style="max-width: 300px">Адрес</th>
             </tr>
             <tr th:each="modelRecord : ${modelRecordList}">
-                <td th:utext="${modelRecord.name}">...</td>
-                <td th:utext="${modelRecord.label}">...</td>
-                <td th:utext="${modelRecord.uri}">...</td>
+                <td style="max-width: 300px" th:utext="${modelRecord.name}">...</td>
+                <td style="max-width: 300px" th:utext="${modelRecord.label}">...</td>
+                <td style="max-width: 300px" th:utext="${modelRecord.uri}">...</td>
             </tr>
             </tbody>
         </table>

@@ -36,4 +36,13 @@ public class GreetingController {
     public String login() {
         return "/login";
     }
+
+    @GetMapping("/dataShowcase")
+    public String login(Model model) {
+
+        model.addAttribute("dataShowcase", dataService.getDataShowcase());
+
+        return "/dataShowcase";
+    }
+
 }

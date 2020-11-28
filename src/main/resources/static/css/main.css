@@ -3,7 +3,7 @@ h1{
 }
 
 h2{
-    color: #ff171c;
+    color: #4285F4;
 }
 
 h2.black{
@@ -31,6 +31,12 @@ table.standart td {
     color: #669;
     border-top: 1px solid #e8edff;
     padding: 10px 15px;
+
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    /*background: #fc0; !* Цвет фона *!*/
+    /*padding: 5px; !* Поля вокруг текста *!*/
+    text-overflow: ellipsis; /* Добавляем многоточие */
 }
 table.standart tr:nth-child(2n) {background: #e8edff;}
 
@@ -113,5 +119,19 @@ nav ul ul ul {
 }
 
 .page_wrapper {
+    width: 1000px;
+    margin: 0 auto;
     margin-top: 78px;
+    overflow: hidden;
+}
+
+.section_header {
+    margin: 30px 0 15px 0;
+}
+.section_header:first-of-type {
+    padding-top: 20px;
+}
+
+.flex_table {
+    width: 100%;
 }

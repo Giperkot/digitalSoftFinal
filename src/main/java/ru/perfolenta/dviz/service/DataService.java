@@ -5,7 +5,9 @@ import org.neo4j.driver.Session;
 import org.neo4j.driver.types.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.perfolenta.dviz.dto.DataShowcaseDto;
 import ru.perfolenta.dviz.dto.OuDto;
+import ru.perfolenta.dviz.dto.showcase.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,84 @@ public class DataService {
         this.driver = driver;
     }
 
+    public DataShowcaseDto getDataShowcase () {
+
+        DataShowcaseDto result = new DataShowcaseDto();
+
+        try (Session session = driver.session()) {
+
+            result.getAttributes().addAll(session.run("match (n:Attributes) return n;")
+                    .list(r -> {
+                        Node m = r.get("n").asNode();
+
+                        return  new AttributeDto(m.get("access_level").asString(),
+                                m.get("name").asString(),
+                                m.get("comment").asString(),
+                                m.get("id").asString(),
+                                m.get("type").asString(),
+                                m.get("hashtag").asString());
+                    }));
+
+            result.getOrgs().addAll(session.run("match (n:Orgs) return n;")
+                    .list(r -> {
+                        Node m = r.get("n").asNode();
+
+                        return  new OrgDto(m.get("name").asString(),
+                                m.get("comment").asString(),
+                                m.get("id").asString(),
+                                m.get("hashtag").asString());
+                    }));
+
+            result.getDocuments().addAll(session.run("match (n:Documents) return n;")
+                    .list(r -> {
+                        Node m = r.get("n").asNode();
+
+                        return new DocumentDto(m.get("access_level").asString(),
+                                m.get("name").asString(),
+                                m.get("comment").asString(),
+                                m.get("id").asString(),
+                                m.get("hashtag").asString());
+                    }));
+
+
+            result.getGovDepartment().addAll(session.run("match (n:GovDepartment) return n;")
+                    .list(r -> {
+                        Node m = r.get("n").asNode();
+
+                        return new GovDepertmentDto(m.get("dwhuri").asString(),
+                                m.get("name").asString(),
+                                m.get("comment").asString(),
+                                m.get("id").asString(),
+                                m.get("uri").asString(),
+                                m.get("hashtag").asString());
+                    }));
+
+
+            result.getInfSystem().addAll(session.run("match (n:InfSystem) return n;")
+                    .list(r -> {
+                        Node m = r.get("n").asNode();
+
+                        return new InfSystemDto(m.get("access_level").asString(),
+                                m.get("name").asString(),
+                                m.get("comment").asString(),
+                                m.get("id").asString(),
+                                m.get("hashtag").asString());
+                    }));
+
+            result.getPersons().addAll(session.run("match (n:Persons) return n;")
+                    .list(r -> {
+                        Node m = r.get("n").asNode();
+
+                        return new PersonDto(m.get("name").asString(),
+                                m.get("comment").asString(),
+                                m.get("id").asString(),
+                                m.get("hashtag").asString());
+                    }));
+
+        }
+
+        return result;
+    }
 
     public static String handleCamelCase (String source) {
         List<String> upperCharList = new ArrayList<>();

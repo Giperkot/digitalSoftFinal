@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>АСПД - Информационная система</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+
+<div class="page_wrapper">
+
+    <div class="section_header">
+        <h2>Атрибуты</h2>
+    </div>
+
+    <table class="standart flex_table">
+        <tbody>
+        <tr>
+            <th>Название</th>
+            <th>Комментарий</th>
+            <th>id</th>
+            <th>Тип</th>
+            <th>Хэштэг</th>
+        </tr>
+        <tr th:each="attribute : ${dataShowcase.attributes}">
+            <td th:utext="${attribute.name}">...</td>
+            <td th:utext="${attribute.comment}">...</td>
+            <td th:utext="${attribute.id}">...</td>
+            <td th:utext="${attribute.type}">...</td>
+            <td th:utext="${attribute.hashtag}">...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="section_header">
+        <h2>Физические лица</h2>
+    </div>
+
+    <table class="standart flex_table">
+        <tbody>
+        <tr>
+            <th>Название</th>
+            <th>Комментарий</th>
+            <th>id</th>
+            <th>Хэштэг</th>
+        </tr>
+        <tr th:each="attribute : ${dataShowcase.persons}">
+            <td th:utext="${attribute.name}">...</td>
+            <td th:utext="${attribute.comment}">...</td>
+            <td th:utext="${attribute.id}">...</td>
+            <td th:utext="${attribute.hashtag}">...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="section_header">
+        <h2>Юридические лица</h2>
+    </div>
+
+    <table class="standart flex_table">
+        <tbody>
+        <tr>
+            <th>Название</th>
+            <th>Комментарий</th>
+            <th>id</th>
+            <th>Хэштэг</th>
+        </tr>
+        <tr th:each="attribute : ${dataShowcase.orgs}">
+            <td th:utext="${attribute.name}">...</td>
+            <td th:utext="${attribute.comment}">...</td>
+            <td th:utext="${attribute.id}">...</td>
+            <td th:utext="${attribute.hashtag}">...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="section_header">
+        <h2>Документы</h2>
+    </div>
+
+    <table class="standart flex_table">
+        <tbody>
+        <tr>
+            <th>Уровень доступа</th>
+            <th>Название</th>
+            <th>Комментарий</th>
+            <th>id</th>
+            <th>Хэштэг</th>
+        </tr>
+        <tr th:each="attribute : ${dataShowcase.documents}">
+            <td th:utext="${attribute.accessLevel}">...</td>
+            <td th:utext="${attribute.name}">...</td>
+            <td th:utext="${attribute.comment}">...</td>
+            <td th:utext="${attribute.id}">...</td>
+            <td th:utext="${attribute.hashtag}">...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="section_header">
+        <h2>Государственные департаменты</h2>
+    </div>
+
+    <table class="standart flex_table">
+        <tbody>
+        <tr>
+            <th>dwhuri</th>
+            <th>Название</th>
+            <th>Комментарий</th>
+            <th>id</th>
+<!--            <th>URI</th>-->
+            <th>Хэштэг</th>
+        </tr>
+        <tr th:each="attribute : ${dataShowcase.govDepartment}">
+            <td th:utext="${attribute.dwhuri}">...</td>
+            <td th:utext="${attribute.name}">...</td>
+            <td th:utext="${attribute.comment}">...</td>
+            <td th:utext="${attribute.id}">...</td>
+<!--            <td th:utext="${attribute.uri}">...</td>-->
+            <td th:utext="${attribute.hashtag}">...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="section_header">
+        <h2>Информационные системы</h2>
+    </div>
+
+    <table class="standart flex_table">
+        <tbody>
+        <tr>
+            <th>Уровень доступа</th>
+            <th>Название</th>
+            <th>Комментарий</th>
+            <th>id</th>
+            <th>Хэштэг</th>
+        </tr>
+        <tr th:each="attribute : ${dataShowcase.infSystem}">
+            <td th:utext="${attribute.accessLevel}">...</td>
+            <td th:utext="${attribute.name}">...</td>
+            <td th:utext="${attribute.comment}">...</td>
+            <td th:utext="${attribute.id}">...</td>
+            <td th:utext="${attribute.hashtag}">...</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- /.container -->
+<!--<option th:each="typeDog : ${typeDogs}"
+        th:value="${typeDog.id}"
+        th:text="${typeDog.nameType}">
+</option>-->
+
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
