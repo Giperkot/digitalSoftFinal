@@ -1,0 +1,41 @@
+//Добавление параметра hashtag для всех элементов
+match (a)
+set a.hashtag = "Test";
+
+match (a:Attributes)
+match (s:InfSystem)
+match (p:Persons)
+match (o:Orgs)
+match (d:Documents)
+match (g:GovDepartment)
+set a.comment = "comment"
+set s.comment = "comment"
+set p.comment = "comment"
+set o.comment = "comment"
+set d.comment = "comment"
+set g.comment = "comment";
+//Создадим индекс
+
+CALL db.index.fulltext.createNodeIndex("AttrIndex",["Attributes"],["name","comment","hashtag"]);
+
+CALL db.index.fulltext.createNodeIndex("ISIndex",["InfSystems"],["name","comment","hashtag"]);
+
+CALL db.index.fulltext.createNodeIndex("PersIndex",["Persons"],["name","comment","hashtag"]);
+
+CALL db.index.fulltext.createNodeIndex("OrgIndex",["Orgs"],["name","comment","hashtag"]);
+
+CALL db.index.fulltext.createNodeIndex("Docs",["Documents"],["name","comment","hashtag"]);
+
+CALL db.index.fulltext.createNodeIndex("GDIndex",["GovDepartment"],["name","comment","hashtag"]);
+//Вызовем поиск по всем элементам
+CALL db.index.fulltext.queryNodes("AttrIndex", "comment:*mme*") YIELD node RETURN node
+union all
+CALL db.index.fulltext.queryNodes("ISIndex", "comment:*mme*") YIELD node RETURN node
+union all
+CALL db.index.fulltext.queryNodes("PersIndex", "comment:*mme*") YIELD node RETURN node
+union all
+CALL db.index.fulltext.queryNodes("OrgIndex", "comment:*mme*") YIELD node RETURN node
+union all
+CALL db.index.fulltext.queryNodes("Docs", "comment:*mme*") YIELD node RETURN node
+union all
+CALL db.index.fulltext.queryNodes("GDIndex", "comment:*mme*") YIELD node RETURN node;
