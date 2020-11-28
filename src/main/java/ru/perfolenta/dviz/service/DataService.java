@@ -1,7 +1,7 @@
 package ru.perfolenta.dviz.service;
 
-import org.neo4j.driver.Driver;
-import org.neo4j.driver.Session;
+import org.neo4j.driver.*;
+import org.neo4j.driver.internal.value.StringValue;
 import org.neo4j.driver.types.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,9 @@ import ru.perfolenta.dviz.dto.OuDto;
 import ru.perfolenta.dviz.dto.showcase.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -165,5 +167,15 @@ public class DataService {
                     });
         }
     }
+
+    public String searchNode(String searchEntity){
+        Session session = driver.session();
+        Map<String,Object> params = new HashMap<>();
+        params.put( "name", searchEntity);
+        Query query = new Query("MATCH (n) WHERE n.label=$name RETURN n", params);
+        Result r = session.run(query);
+        return r.toString();
+    }
+
 
 }

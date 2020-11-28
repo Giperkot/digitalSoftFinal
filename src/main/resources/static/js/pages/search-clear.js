@@ -56,13 +56,27 @@ $(document).ready(function(){
         });
     });
 
-    $('.radio-group .radio').click(function(){
-        $(this).parent().find('.radio').removeClass('selected');
-        $(this).addClass('selected');
-    });
+    // $('.radio-group .radio').click(function(){
+    //     $(this).parent().find('.radio').removeClass('selected');
+    //     $(this).addClass('selected');
+    // });
 
     $(".submit").click(function(){
         return false;
+    })
+
+    $("#search").click(function () {
+        var searchString = $("#entity").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/search-clear/search-entity",
+            data: {"searchId" : searchString}
+        }).done(function( msg ) {
+            alert( "Data get: " + msg );
+        });
+
+
     })
 
 });

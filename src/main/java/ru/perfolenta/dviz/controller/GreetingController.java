@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.perfolenta.dviz.dto.OuDto;
 import ru.perfolenta.dviz.service.DataService;
 
@@ -59,4 +61,9 @@ public class GreetingController {
         return "/dataShowcase";
     }
 
+
+    @PostMapping("/search-clear/search-entity")
+    public String searchClear(@RequestParam String searchId) {
+        return dataService.searchNode(searchId);
+    }
 }
