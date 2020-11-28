@@ -1,20 +1,33 @@
 //Узнать на кого ссылаются указывают ссылки
 match (n)-[:belongs]->(m) return m
-//Показать объекты, связанные по canRead
+
+//Показать объекты, связанные по canRead и canWrite
 match (n)-[:canRead]->(m) return n, m
+match (n)-[:canWrite]->(m) return n, m
+
+//Показать объекты имеющие связки в 2 стороны
+match (n)-[:canWrite]->(m) 
+match (m)-[:canRead]->(n) 
+return n, m
+
 //Показать объекты, связанные с GovDepartments
 match (n)-[r]->(m:GovDepartment) return n, m
+
 //Показать с кем связан атрибут с id=TypeDoc
 match (n:Attributes)-[r]->(m) where n.id = "TypeDoc" return n, m
 match (n:Attributes {id: "TypeDoc"})-[r]->(m) return n, m
 match (n:Attributes {id: "TypeDoc"})-->(m) return n, m
 match (n:Attributes {name: "Имя"})-[r]->(m) return n,m
+
 //Получить только связи
 match (n:Attributes {id: "TypeDoc"})-[r]->(m) return r
+
 //Показать кто ссылается на узел m с указанием глубины связок
 match (n)-[r*1..2]->(m:GovDepartment {id: "PFR"}) return n,m
 match (n)-[r*1..3]->(m:GovDepartment {id: "PFR"}) return n,m
+
 //Показать какие атрибуты может читать ведомство
 match (n)-[r:canRead]->(m:GovDepartment {id: "PFR"}) return n,m
+
 //Показать какие атрибуты может изменять ведомство
 match (n:GovDepartment {id: "PFR"})-[r:canWrite]->(m) return n,m
