@@ -273,3 +273,12 @@ body {
     background: #FFFFFF !important;
     color: #4285F4 !important;
 }
+
+.login_message {
+    display: flex;
+    justify-content: center;
+}
+.green {
+    color: #4285F4;
+}
+

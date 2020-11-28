@@ -11,20 +11,22 @@
 <div th:replace="fragments/header :: header"></div>
 
 
-    <table class="standart">
-        <tbody>
-        <tr>
-            <th>id</th>
-            <th>Название</th>
-            <th>Адрес</th>
-        </tr>
-        <tr th:each="modelRecord : ${modelRecordList}">
-            <td th:utext="${modelRecord.name}">...</td>
-            <td th:utext="${modelRecord.label}">...</td>
-            <td th:utext="${modelRecord.uri}">...</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="page_wrapper">
+        <table class="standart">
+            <tbody>
+            <tr>
+                <th>id</th>
+                <th>Название</th>
+                <th>Адрес</th>
+            </tr>
+            <tr th:each="modelRecord : ${modelRecordList}">
+                <td th:utext="${modelRecord.name}">...</td>
+                <td th:utext="${modelRecord.label}">...</td>
+                <td th:utext="${modelRecord.uri}">...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 <!-- /.container -->
 <!--<option th:each="typeDog : ${typeDogs}"
