@@ -34,22 +34,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
-                .antMatchers("/img/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/", true)
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/perform_logout")
-                .deleteCookies("JSESSIONID").invalidateHttpSession(true)
-                .permitAll()
-                .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .antMatchers("/img/**").permitAll();
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .defaultSuccessUrl("/", true)
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .logoutUrl("/perform_logout")
+//                .deleteCookies("JSESSIONID").invalidateHttpSession(true)
+//                .permitAll()
+//                .and()
+//                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
     @Override
