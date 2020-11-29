@@ -26,6 +26,25 @@
 
         </div>
 
+<!--
+        "Реестр Юридических лиц", "Реестр государственных организаций", "Реестр государственных организаций",
+        "ФСС", "ФИАС", "ПФР", "ФНС", "Реестр страхователей", "Реестр получателей услуг", "Реестр бюджетных организаций",
+        "Росреестр"-->
+
+        <table class="standart flex_table">
+            <tbody>
+            <tr>
+                <th></th>
+                <th>Название</th>
+                <th>Адрес</th>
+            </tr>
+            <tr th:each="modelRecord : ${modelRecordList}">
+                <td style="max-width: 300px" th:utext="${modelRecord.name}">...</td>
+                <td style="max-width: 300px" th:utext="${modelRecord.label}">...</td>
+                <td style="max-width: 300px" th:utext="${modelRecord.uri}">...</td>
+            </tr>
+            </tbody>
+        </table>
 
     </div>
 

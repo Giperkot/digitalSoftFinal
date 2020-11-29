@@ -5,14 +5,17 @@
     <title>Четкий поиск</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+
     <link rel="stylesheet" th:href="@{/css/search-clear.css}" />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
     <script th:src="@{/js/pages/search-clear.js}"></script>
-
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 
+<div class="page_wrapper">
 <!-- MultiStep Form -->
 <div class="container-fluid" id="grad1">
     <div class="row justify-content-center mt-0">
@@ -93,6 +96,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <!--<script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>-->
 <!--<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>-->
