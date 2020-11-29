@@ -1,18 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+>
 <head>
 </head>
 <body>
 <div th:fragment="footer">
     <div class="container">
         <footer class="page-footer">
-            <div class="footer-copyright text-center py-3">© 2020
+            <!--<div class="footer-copyright text-center py-3">© 2020
                 <span sec:authorize="isAuthenticated()">| Пользователь: <span sec:authentication="name"></span> |
                 Роль: <span sec:authentication="principal.authorities"></span> |
                 <a th:href="@{/logout}">Выйти</a>
             </span>
-            </div>
+            </div>-->
             <script type="text/javascript" th:src="@{/js/balance-form-page.js}"></script>
             <script type="text/javascript" th:src="@{/js/balance-form-page.js}"></script>
             <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
@@ -26,7 +26,6 @@
 <div th:fragment="header-js">
     <script th:src="@{/resources/js/sigma/src/conrad.js}"></script>
     <script th:src="@{/resources/js/sigma/src/sigma.core.js}"></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
 </div>
 </body>
 </html>

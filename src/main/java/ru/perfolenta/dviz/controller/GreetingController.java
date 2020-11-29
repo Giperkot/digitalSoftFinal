@@ -28,8 +28,7 @@ public class GreetingController {
     @GetMapping({"/", "/index"})
     public String index(Model model) {
 
-        List<OuDto> ouList = dataService.getOus();
-        model.addAttribute("modelRecordList", ouList);
+
 
         return "/index";
     }
@@ -50,6 +49,14 @@ public class GreetingController {
     public String searchClear(Model model) {
 
         return "/search-clear";
+    }
+
+    @GetMapping("/ontology")
+    public String ontology(Model model) {
+        List<OuDto> ouList = dataService.getOus();
+        model.addAttribute("modelRecordList", ouList);
+
+        return "/ontology";
     }
 
     /*@GetMapping("/relationGraphModel")
